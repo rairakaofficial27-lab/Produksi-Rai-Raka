@@ -129,7 +129,7 @@
           </div>
           <div>
             <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Total Unit Produksi</p>
-            <h3 id="metric-total-units" class="text-xl font-extrabold text-slate-800">0 unit</h3>
+            <h3 id="metric-total-units" class="text-xl font-extrabold text-slate-800">0 stel/pcs</h3>
           </div>
         </div>
 
@@ -145,11 +145,11 @@
 
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-3">
           <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
-            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+            <i data-lucide="wallet" class="w-5 h-5"></i>
           </div>
           <div>
-            <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Order Selesai</p>
-            <h3 id="metric-completed-orders" class="text-xl font-extrabold text-emerald-700">0</h3>
+            <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Est. Upah Borongan</p>
+            <h3 id="metric-labor-cost" class="text-lg font-bold text-emerald-700">Rp 0</h3>
           </div>
         </div>
       </div>
@@ -157,12 +157,9 @@
       <!-- KANBAN BOARD / PIPELINE STAGES -->
       <div class="space-y-4">
         <div class="flex items-center justify-between">
-          <div>
-            <h2 class="text-base font-bold text-slate-800 flex items-center gap-2">
-              <i data-lucide="kanban" class="w-5 h-5 text-brand-600"></i> Lantai Produksi (Kelompok Deadline)
-            </h2>
-            <p class="text-xs text-slate-500">Order dikelompokkan secara rapi berdasarkan tanggal deadline proyek.</p>
-          </div>
+          <h2 class="text-base font-bold text-slate-800 flex items-center gap-2">
+            <i data-lucide="kanban" class="w-5 h-5 text-brand-600"></i> Lantai Produksi (Kanban Board)
+          </h2>
           <button onclick="fetchOrders()" class="text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 px-3 py-1.5 rounded-lg font-semibold flex items-center gap-1.5 transition">
             <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Refresh Data
           </button>
@@ -179,7 +176,7 @@
               </span>
               <span id="count-potong" class="bg-amber-100 text-amber-800 text-xs font-bold px-2 py-0.5 rounded-full">0</span>
             </div>
-            <div id="col-potong" class="space-y-4 flex-1 overflow-y-auto pr-1"></div>
+            <div id="col-potong" class="space-y-3 flex-1 overflow-y-auto"></div>
           </div>
 
           <!-- STAGE 2: PROSES JAHIT -->
@@ -190,7 +187,7 @@
               </span>
               <span id="count-jahit" class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-0.5 rounded-full">0</span>
             </div>
-            <div id="col-jahit" class="space-y-4 flex-1 overflow-y-auto pr-1"></div>
+            <div id="col-jahit" class="space-y-3 flex-1 overflow-y-auto"></div>
           </div>
 
           <!-- STAGE 3: PROSES SABLON -->
@@ -201,7 +198,7 @@
               </span>
               <span id="count-sablon" class="bg-purple-100 text-purple-800 text-xs font-bold px-2 py-0.5 rounded-full">0</span>
             </div>
-            <div id="col-sablon" class="space-y-4 flex-1 overflow-y-auto pr-1"></div>
+            <div id="col-sablon" class="space-y-3 flex-1 overflow-y-auto"></div>
           </div>
 
           <!-- STAGE 4: PROSES PACKING -->
@@ -212,7 +209,7 @@
               </span>
               <span id="count-packing" class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-0.5 rounded-full">0</span>
             </div>
-            <div id="col-packing" class="space-y-4 flex-1 overflow-y-auto pr-1"></div>
+            <div id="col-packing" class="space-y-3 flex-1 overflow-y-auto"></div>
           </div>
 
         </div>
@@ -226,12 +223,12 @@
         <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
           <div>
             <h2 class="text-lg font-bold text-slate-800">Form Input Order Produksi</h2>
-            <p class="text-xs text-slate-500">Isi spesifikasi pesanan untuk dimasukkan ke antrean lantai produksi.</p>
+            <p class="text-xs text-slate-500">Isi spesifikasi pesanan. Sistem menghitung otomatis upah borongan worker.</p>
           </div>
           <div class="text-right">
             <span class="text-[10px] text-slate-400 font-bold block uppercase">No. Antrean Otomatis</span>
             <div class="flex items-center gap-1">
-              <input type="text" id="autoQueueInput" readonly value="Memuat..." class="w-24 bg-slate-100 font-black text-brand-600 text-center px-2 py-1 rounded-lg border border-slate-200 text-xs">
+              <input type="text" id="autoQueueInput" readonly value="Memuat..." class="w-20 bg-slate-100 font-black text-brand-600 text-center px-2 py-1 rounded-lg border border-slate-200 text-sm">
               <button type="button" onclick="generateAutoQueueNumber()" title="Refresh No. Antrean" class="p-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600">
                 <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
               </button>
@@ -290,7 +287,7 @@
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">KELENGKAPAN</label>
-              <select id="completeness_type" class="w-full text-sm p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none bg-white">
+              <select id="completeness_type" onchange="calculateLaborFees()" class="w-full text-sm p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none bg-white">
                 <option value="Satu Stel">Satu Stel (Baju + Celana)</option>
                 <option value="Baju Saja">Baju Saja</option>
                 <option value="Celana Saja">Celana Saja</option>
@@ -308,53 +305,61 @@
           <!-- LOKASI SABLON -->
           <div id="sablonLocationContainer">
             <label class="block text-xs font-bold text-slate-700 mb-1">LOKASI SABLON</label>
-            <select id="screen_printing_location" class="w-full text-sm p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none bg-white">
+            <select id="screen_printing_location" onchange="calculateLaborFees()" class="w-full text-sm p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none bg-white">
               <option value="Baju & Celana">Baju & Celana (2 Lokasi)</option>
               <option value="Baju Saja">Baju Saja (1 Lokasi)</option>
               <option value="Celana Saja">Celana Saja (1 Lokasi)</option>
             </select>
           </div>
 
-          <!-- QUANTITY MATRIX -->
+          <!-- QUANTITY MATRIX (S, M, L, XL, 2XL, 3XL, 4XL) -->
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-2">RINCIAN QUANTITY PER UKURAN (PCS/STEL)</label>
             <div class="grid grid-cols-7 gap-1.5 md:gap-2">
               <div>
                 <span class="block text-[11px] font-bold text-center text-slate-500 mb-1">S</span>
-                <input type="number" min="0" id="size_s" value="0" onfocus="this.select()" oninput="updateQuantitySummary()" class="w-full text-center text-sm font-bold p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none">
+                <input type="number" min="0" id="size_s" value="0" onfocus="this.select()" oninput="calculateLaborFees()" class="w-full text-center text-sm font-bold p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none">
               </div>
               <div>
                 <span class="block text-[11px] font-bold text-center text-slate-500 mb-1">M</span>
-                <input type="number" min="0" id="size_m" value="0" onfocus="this.select()" oninput="updateQuantitySummary()" class="w-full text-center text-sm font-bold p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none">
+                <input type="number" min="0" id="size_m" value="0" onfocus="this.select()" oninput="calculateLaborFees()" class="w-full text-center text-sm font-bold p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none">
               </div>
               <div>
                 <span class="block text-[11px] font-bold text-center text-slate-500 mb-1">L</span>
-                <input type="number" min="0" id="size_l" value="0" onfocus="this.select()" oninput="updateQuantitySummary()" class="w-full text-center text-sm font-bold p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none">
+                <input type="number" min="0" id="size_l" value="0" onfocus="this.select()" oninput="calculateLaborFees()" class="w-full text-center text-sm font-bold p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none">
               </div>
               <div>
                 <span class="block text-[11px] font-bold text-center text-slate-500 mb-1">XL</span>
-                <input type="number" min="0" id="size_xl" value="0" onfocus="this.select()" oninput="updateQuantitySummary()" class="w-full text-center text-sm font-bold p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none">
+                <input type="number" min="0" id="size_xl" value="0" onfocus="this.select()" oninput="calculateLaborFees()" class="w-full text-center text-sm font-bold p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none">
               </div>
               <div>
                 <span class="block text-[11px] font-bold text-center text-slate-500 mb-1">2XL</span>
-                <input type="number" min="0" id="size_2xl" value="0" onfocus="this.select()" oninput="updateQuantitySummary()" class="w-full text-center text-sm font-bold p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none">
+                <input type="number" min="0" id="size_2xl" value="0" onfocus="this.select()" oninput="calculateLaborFees()" class="w-full text-center text-sm font-bold p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none">
               </div>
               <div>
                 <span class="block text-[11px] font-bold text-center text-slate-500 mb-1">3XL</span>
-                <input type="number" min="0" id="size_3xl" value="0" onfocus="this.select()" oninput="updateQuantitySummary()" class="w-full text-center text-sm font-bold p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none">
+                <input type="number" min="0" id="size_3xl" value="0" onfocus="this.select()" oninput="calculateLaborFees()" class="w-full text-center text-sm font-bold p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none">
               </div>
               <div>
                 <span class="block text-[11px] font-bold text-center text-slate-500 mb-1">4XL</span>
-                <input type="number" min="0" id="size_4xl" value="0" onfocus="this.select()" oninput="updateQuantitySummary()" class="w-full text-center text-sm font-bold p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none">
+                <input type="number" min="0" id="size_4xl" value="0" onfocus="this.select()" oninput="calculateLaborFees()" class="w-full text-center text-sm font-bold p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none">
               </div>
             </div>
           </div>
 
-          <!-- RINGKASAN PEMESANAN -->
+          <!-- SUMMARY & ESTIMASI UPAH WORKER -->
           <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
             <div class="flex justify-between text-xs text-slate-600">
               <span>Total Unit Pemesanan:</span>
               <span id="preview-total-unit" class="font-bold text-slate-900">0 unit</span>
+            </div>
+            <div class="flex justify-between text-xs text-slate-600">
+              <span>Total PCS Internal Produksi:</span>
+              <span id="preview-total-pcs" class="font-bold text-slate-900">0 pcs</span>
+            </div>
+            <div class="border-t border-slate-200 pt-2 flex justify-between text-xs font-bold text-brand-700">
+              <span>Estimasi Total Upah Borongan Worker:</span>
+              <span id="preview-total-upah">Rp 0</span>
             </div>
           </div>
 
@@ -456,7 +461,7 @@
             <input type="date" id="edit_deadline_date" required class="w-full text-sm p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none">
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">TAHAP PRODUKSI</label>
+            <label class="block text-xs font-bold text-slate-700 mb-1">TAHAP / STATUS PRODUKSI</label>
             <select id="edit_status_produksi" class="w-full text-sm p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none bg-white font-semibold text-brand-700">
               <option value="Antrean Potong">1. Antrean Potong</option>
               <option value="Proses Jahit">2. Proses Jahit</option>
@@ -491,7 +496,7 @@
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">KELENGKAPAN</label>
-            <select id="edit_completeness_type" class="w-full text-sm p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none bg-white">
+            <select id="edit_completeness_type" onchange="calculateEditLaborFees()" class="w-full text-sm p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none bg-white">
               <option value="Satu Stel">Satu Stel (Baju + Celana)</option>
               <option value="Baju Saja">Baju Saja</option>
               <option value="Celana Saja">Celana Saja</option>
@@ -508,7 +513,7 @@
 
         <div id="editSablonLocationContainer">
           <label class="block text-xs font-bold text-slate-700 mb-1">LOKASI SABLON</label>
-          <select id="edit_screen_printing_location" class="w-full text-sm p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none bg-white">
+          <select id="edit_screen_printing_location" onchange="calculateEditLaborFees()" class="w-full text-sm p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none bg-white">
             <option value="Baju & Celana">Baju & Celana (2 Lokasi)</option>
             <option value="Baju Saja">Baju Saja (1 Lokasi)</option>
             <option value="Celana Saja">Celana Saja (1 Lokasi)</option>
@@ -520,650 +525,870 @@
           <div class="grid grid-cols-7 gap-1.5">
             <div>
               <span class="block text-[10px] font-bold text-center text-slate-500 mb-1">S</span>
-              <input type="number" min="0" id="edit_size_s" onfocus="this.select()" class="w-full text-center text-xs font-bold p-2 border border-slate-200 rounded-lg outline-none">
+              <input type="number" min="0" id="edit_size_s" onfocus="this.select()" oninput="calculateEditLaborFees()" class="w-full text-center text-xs font-bold p-2 border border-slate-200 rounded-lg outline-none">
             </div>
             <div>
               <span class="block text-[10px] font-bold text-center text-slate-500 mb-1">M</span>
-              <input type="number" min="0" id="edit_size_m" onfocus="this.select()" class="w-full text-center text-xs font-bold p-2 border border-slate-200 rounded-lg outline-none">
+              <input type="number" min="0" id="edit_size_m" onfocus="this.select()" oninput="calculateEditLaborFees()" class="w-full text-center text-xs font-bold p-2 border border-slate-200 rounded-lg outline-none">
             </div>
             <div>
               <span class="block text-[10px] font-bold text-center text-slate-500 mb-1">L</span>
-              <input type="number" min="0" id="edit_size_l" onfocus="this.select()" class="w-full text-center text-xs font-bold p-2 border border-slate-200 rounded-lg outline-none">
+              <input type="number" min="0" id="edit_size_l" onfocus="this.select()" oninput="calculateEditLaborFees()" class="w-full text-center text-xs font-bold p-2 border border-slate-200 rounded-lg outline-none">
             </div>
             <div>
               <span class="block text-[10px] font-bold text-center text-slate-500 mb-1">XL</span>
-              <input type="number" min="0" id="edit_size_xl" onfocus="this.select()" class="w-full text-center text-xs font-bold p-2 border border-slate-200 rounded-lg outline-none">
+              <input type="number" min="0" id="edit_size_xl" onfocus="this.select()" oninput="calculateEditLaborFees()" class="w-full text-center text-xs font-bold p-2 border border-slate-200 rounded-lg outline-none">
             </div>
             <div>
               <span class="block text-[10px] font-bold text-center text-slate-500 mb-1">2XL</span>
-              <input type="number" min="0" id="edit_size_2xl" onfocus="this.select()" class="w-full text-center text-xs font-bold p-2 border border-slate-200 rounded-lg outline-none">
+              <input type="number" min="0" id="edit_size_2xl" onfocus="this.select()" oninput="calculateEditLaborFees()" class="w-full text-center text-xs font-bold p-2 border border-slate-200 rounded-lg outline-none">
             </div>
             <div>
               <span class="block text-[10px] font-bold text-center text-slate-500 mb-1">3XL</span>
-              <input type="number" min="0" id="edit_size_3xl" onfocus="this.select()" class="w-full text-center text-xs font-bold p-2 border border-slate-200 rounded-lg outline-none">
+              <input type="number" min="0" id="edit_size_3xl" onfocus="this.select()" oninput="calculateEditLaborFees()" class="w-full text-center text-xs font-bold p-2 border border-slate-200 rounded-lg outline-none">
             </div>
             <div>
               <span class="block text-[10px] font-bold text-center text-slate-500 mb-1">4XL</span>
-              <input type="number" min="0" id="edit_size_4xl" onfocus="this.select()" class="w-full text-center text-xs font-bold p-2 border border-slate-200 rounded-lg outline-none">
+              <input type="number" min="0" id="edit_size_4xl" onfocus="this.select()" oninput="calculateEditLaborFees()" class="w-full text-center text-xs font-bold p-2 border border-slate-200 rounded-lg outline-none">
             </div>
+          </div>
+        </div>
+
+        <div class="bg-amber-50/60 p-3 rounded-xl border border-amber-200/60 space-y-1 text-xs">
+          <div class="flex justify-between">
+            <span class="text-slate-600">Total Unit / PCS Internal:</span>
+            <span id="edit-preview-total-unit" class="font-bold text-slate-800">0 unit</span>
+          </div>
+          <div class="flex justify-between font-bold text-amber-800 border-t border-amber-200/50 pt-1">
+            <span>Estimasi Upah Borongan Baru:</span>
+            <span id="edit-preview-total-upah">Rp 0</span>
           </div>
         </div>
 
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">CATATAN KHUSUS</label>
-          <textarea id="edit_notes" rows="2" class="w-full text-sm p-2.5 border border-slate-200 rounded-xl outline-none"></textarea>
+          <textarea id="edit_notes" rows="2" class="w-full text-xs p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none"></textarea>
         </div>
 
-        <div class="flex items-center justify-between pt-3 border-t border-slate-100">
-          <button type="button" onclick="deleteCurrentOrder()" class="px-4 py-2.5 text-xs font-bold text-red-600 hover:bg-red-50 rounded-xl transition flex items-center gap-1.5">
-            <i data-lucide="trash-2" class="w-4 h-4"></i> Hapus Order
+        <div class="flex gap-2 pt-2">
+          <button type="button" onclick="closeEditModal()" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 rounded-xl transition text-xs">Batal</button>
+          <button type="submit" id="btnSaveEditOrder" class="w-2/3 bg-amber-600 hover:bg-amber-700 text-white font-extrabold py-3 rounded-xl transition shadow-lg shadow-amber-500/20 text-xs flex items-center justify-center gap-2">
+            <i data-lucide="save" class="w-4 h-4"></i> Simpan Perubahan
           </button>
-          <div class="flex gap-2">
-            <button type="button" onclick="closeEditModal()" class="px-4 py-2.5 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl">Batal</button>
-            <button type="submit" class="px-5 py-2.5 text-xs font-bold bg-brand-600 hover:bg-brand-700 text-white rounded-xl shadow flex items-center gap-1.5">
-              <i data-lucide="save" class="w-4 h-4"></i> Simpan Perubahan
-            </button>
-          </div>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- SCRIPT LOGIC -->
-  <script>
-    // GLOBAL STATE
-    let supabaseClient = null;
-    let localOrders = JSON.parse(localStorage.getItem('rr_orders') || '[]');
-    let uploadedImagesBase64 = [];
-    let currentLkpOrder = null;
+  <!-- DELETE CONFIRMATION MODAL -->
+  <div id="deleteConfirmModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-5 border border-slate-100 text-center space-y-4">
+      <div class="w-12 h-12 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center mx-auto">
+        <i data-lucide="trash-2" class="w-6 h-6"></i>
+      </div>
+      <div>
+        <h3 class="text-base font-bold text-slate-800">Hapus Pesanan Ini?</h3>
+        <p id="deleteTargetText" class="text-xs text-slate-500 mt-1">Data pesanan akan dihapus secara permanen dari database Supabase.</p>
+      </div>
+      <div class="flex gap-2 pt-2">
+        <button onclick="closeDeleteModal()" class="w-1/2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 rounded-xl transition text-xs">Batal</button>
+        <button onclick="executeDeleteOrder()" id="btnConfirmDelete" class="w-1/2 bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 rounded-xl transition shadow-lg shadow-red-500/30 text-xs flex items-center justify-center gap-1.5">
+          <i data-lucide="trash-2" class="w-4 h-4"></i> Ya, Hapus
+        </button>
+      </div>
+    </div>
+  </div>
 
-    // INITIALIZATION
-    document.addEventListener('DOMContentLoaded', () => {
-      initSupabase();
-      generateAutoQueueNumber();
-      fetchOrders();
+  <!-- CUSTOM TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm"></div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // PRESET SUPABASE CREDENTIALS (RAI_RAKA)
+    const DEFAULT_SUPABASE_URL = "https://drnhcsnerzouwvmjyytr.supabase.co";
+    const DEFAULT_SUPABASE_KEY = "sb_publishable_p4yEr_blk1OB7tbJA1wWfQ_IdKYxqHB";
+
+    let supabaseClient = null;
+    let currentOrders = [];
+    let base64Images = []; // Digunakan hanya untuk preview di UI jika diperlukan
+    let rawImageFiles = []; // BARU: Menyimpan file gambar asli untuk diunggah ke storage
+    let currentLkpOrder = null;
+    let deleteTargetId = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
       lucide.createIcons();
+      initSupabase();
+      const defaultDate = new Date();
+      defaultDate.setDate(defaultDate.getDate() + 7);
+      document.getElementById("deadline_date").value = defaultDate.toISOString().split('T')[0];
     });
 
-    // SUPABASE SETUP
+    function showToast(message, type = "info") {
+      const container = document.getElementById("toastContainer");
+      const toast = document.createElement("div");
+      
+      const bgColors = {
+        success: "bg-slate-900 border-emerald-500 text-white",
+        error: "bg-slate-900 border-red-500 text-white",
+        info: "bg-slate-900 border-brand-500 text-white"
+      };
+
+      const icons = {
+        success: `<i data-lucide="check-circle" class="w-5 h-5 text-emerald-400"></i>`,
+        error: `<i data-lucide="alert-circle" class="w-5 h-5 text-red-400"></i>`,
+        info: `<i data-lucide="info" class="w-5 h-5 text-brand-400"></i>`
+      };
+
+      toast.className = `p-3.5 rounded-xl border-l-4 shadow-xl flex items-center gap-3 text-xs font-semibold ${bgColors[type] || bgColors.info} transition-all duration-300 transform translate-y-2 opacity-0`;
+      toast.innerHTML = `${icons[type] || icons.info} <span>${message}</span>`;
+
+      container.appendChild(toast);
+      lucide.createIcons();
+
+      setTimeout(() => {
+        toast.classList.remove("translate-y-2", "opacity-0");
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add("opacity-0", "translate-y-2");
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
     function initSupabase() {
-      const url = localStorage.getItem('rr_sb_url');
-      const key = localStorage.getItem('rr_sb_key');
-      if (url && key && window.supabase) {
+      const cachedKey = localStorage.getItem("rr_supabase_key");
+      if (cachedKey && (cachedKey.includes("...") || !cachedKey.includes("sb_publishable_"))) {
+        localStorage.removeItem("rr_supabase_url");
+        localStorage.removeItem("rr_supabase_key");
+      }
+
+      const url = localStorage.getItem("rr_supabase_url") || DEFAULT_SUPABASE_URL;
+      const key = localStorage.getItem("rr_supabase_key") || DEFAULT_SUPABASE_KEY;
+
+      if (url && key) {
         try {
-          supabaseClient = window.supabase.createClient(url, key);
-        } catch (e) {
-          console.error("Supabase init error", e);
+          supabaseClient = supabase.createClient(url, key);
+          fetchOrders();
+          generateAutoQueueNumber();
+        } catch (err) {
+          console.error("Gagal menginisialisasi Supabase Client:", err);
+          openConfigModal();
         }
+      } else {
+        openConfigModal();
       }
     }
 
     function openConfigModal() {
-      document.getElementById('supabaseUrlInput').value = localStorage.getItem('rr_sb_url') || '';
-      document.getElementById('supabaseKeyInput').value = localStorage.getItem('rr_sb_key') || '';
-      document.getElementById('configModal').classList.remove('hidden');
+      document.getElementById("supabaseUrlInput").value = localStorage.getItem("rr_supabase_url") || DEFAULT_SUPABASE_URL;
+      document.getElementById("supabaseKeyInput").value = localStorage.getItem("rr_supabase_key") || DEFAULT_SUPABASE_KEY;
+      document.getElementById("configModal").classList.remove("hidden");
     }
 
     function saveConfig() {
-      const url = document.getElementById('supabaseUrlInput').value.trim();
-      const key = document.getElementById('supabaseKeyInput').value.trim();
-      localStorage.setItem('rr_sb_url', url);
-      localStorage.setItem('rr_sb_key', key);
-      document.getElementById('configModal').classList.add('hidden');
+      const url = document.getElementById("supabaseUrlInput").value.trim();
+      const key = document.getElementById("supabaseKeyInput").value.trim();
+      if (!url || !key) return showToast("URL dan Key wajib diisi!", "error");
+
+      localStorage.setItem("rr_supabase_url", url);
+      localStorage.setItem("rr_supabase_key", key);
+      document.getElementById("configModal").classList.add("hidden");
+      showToast("Koneksi Supabase tersimpan!", "success");
       initSupabase();
-      fetchOrders();
     }
 
-    // TAB SWITCHING
     function switchTab(tabName) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.tab-btn').forEach(el => {
-        el.classList.remove('border-brand-500', 'text-white', 'bg-slate-700/50');
-        el.classList.add('border-transparent', 'text-slate-400');
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('border-brand-500', 'text-white', 'bg-slate-700/50');
+        btn.classList.add('border-transparent', 'text-slate-400');
       });
 
       document.getElementById(`view-${tabName}`).classList.remove('hidden');
-      const activeTabBtn = document.getElementById(`tab-${tabName}`);
-      activeTabBtn.classList.remove('border-transparent', 'text-slate-400');
-      activeTabBtn.classList.add('border-brand-500', 'text-white', 'bg-slate-700/50');
+      const activeBtn = document.getElementById(`tab-${tabName}`);
+      activeBtn.classList.add('border-brand-500', 'text-white', 'bg-slate-700/50');
+      activeBtn.classList.remove('border-transparent', 'text-slate-400');
+
+      if (tabName === 'input') generateAutoQueueNumber();
+      if (tabName === 'dashboard' || tabName === 'history') fetchOrders();
+    }
+
+    async function generateAutoQueueNumber() {
+      const autoInput = document.getElementById("autoQueueInput");
+      autoInput.value = "...";
       
-      if (tabName === 'dashboard' || tabName === 'history') {
-        fetchOrders();
+      if (!supabaseClient) return;
+
+      try {
+        const { data, error } = await supabaseClient
+          .from('production_orders')
+          .select('queue_number')
+          .order('created_at', { ascending: false })
+          .limit(1);
+
+        if (error) throw error;
+
+        let nextNum = 1;
+        if (data && data.length > 0 && data[0].queue_number) {
+          const parsed = parseInt(data[0].queue_number, 10);
+          if (!isNaN(parsed)) nextNum = parsed + 1;
+        }
+
+        autoInput.value = String(nextNum).padStart(3, '0');
+      } catch (e) {
+        console.warn("Menggunakan fallback antrean lokal:", e);
+        autoInput.value = "001";
       }
     }
 
-    // AUTO QUEUE NUMBER GENERATOR
-    function generateAutoQueueNumber() {
-      const today = new Date();
-      const dateStr = today.toISOString().slice(0, 10).replace(/-/g, '');
-      const countToday = localOrders.filter(o => o.id && o.id.includes(dateStr)).length + 1;
-      const numStr = String(countToday).padStart(3, '0');
-      document.getElementById('autoQueueInput').value = `RR-${dateStr}-${numStr}`;
+    function calculateLaborFees() {
+      const s = parseInt(document.getElementById("size_s").value) || 0;
+      const m = parseInt(document.getElementById("size_m").value) || 0;
+      const l = parseInt(document.getElementById("size_l").value) || 0;
+      const xl = parseInt(document.getElementById("size_xl").value) || 0;
+      const x2l = parseInt(document.getElementById("size_2xl").value) || 0;
+      const x3l = parseInt(document.getElementById("size_3xl").value) || 0;
+      const x4l = parseInt(document.getElementById("size_4xl").value) || 0;
+
+      const totalUnit = s + m + l + xl + x2l + x3l + x4l;
+      const completeness = document.getElementById("completeness_type").value;
+      const isStel = completeness === "Satu Stel";
+      const totalPcsInt = isStel ? totalUnit * 2 : totalUnit;
+
+      const upahPotong = totalUnit * (isStel ? 3000 : 1000);
+      const upahJahit = totalUnit * (isStel ? 7000 : 3500);
+      
+      const sablonStatus = document.getElementById("screen_printing_status").value;
+      const sablonLoc = document.getElementById("screen_printing_location").value;
+      let upahSablon = 0;
+      if (sablonStatus === "Sablon") {
+        upahSablon = totalUnit * (sablonLoc === "Baju & Celana" ? 2000 : 1000);
+      }
+
+      const upahPacking = totalUnit * (isStel ? 500 : 250);
+      const totalUpah = upahPotong + upahJahit + upahSablon + upahPacking;
+
+      document.getElementById("preview-total-unit").innerText = `${totalUnit} ${isStel ? 'stel' : 'pcs'}`;
+      document.getElementById("preview-total-pcs").innerText = `${totalPcsInt} pcs`;
+      document.getElementById("preview-total-upah").innerText = `Rp ${totalUpah.toLocaleString('id-ID')}`;
+
+      return { totalUnit, totalPcsInt, totalUpah };
     }
 
-    // SABLON LOCATION TOGGLE
     function toggleSablonLocation() {
-      const status = document.getElementById('screen_printing_status').value;
-      const container = document.getElementById('sablonLocationContainer');
-      if (status === 'Tanpa Sablon') {
-        container.classList.add('hidden');
+      const status = document.getElementById("screen_printing_status").value;
+      const container = document.getElementById("sablonLocationContainer");
+      if (status === "Tanpa Sablon") {
+        container.classList.add("hidden");
       } else {
-        container.classList.remove('hidden');
+        container.classList.remove("hidden");
       }
+      calculateLaborFees();
     }
 
-    function toggleEditSablonLocation() {
-      const status = document.getElementById('edit_screen_printing_status').value;
-      const container = document.getElementById('editSablonLocationContainer');
-      if (status === 'Tanpa Sablon') {
-        container.classList.add('hidden');
-      } else {
-        container.classList.remove('hidden');
-      }
-    }
-
-    // QUANTITY SUMMARY UPDATE
-    function updateQuantitySummary() {
-      const sizes = ['s', 'm', 'l', 'xl', '2xl', '3xl', '4xl'];
-      let total = 0;
-      sizes.forEach(s => {
-        total += parseInt(document.getElementById(`size_${s}`).value) || 0;
-      });
-      document.getElementById('preview-total-unit').textContent = `${total} unit`;
-    }
-
-    // IMAGE UPLOAD HANDLER
+    // --- FUNGSI BARU/DIUBAH UNTUK MENANGANI UPLOAD FILE ---
     function handleImageUpload(e) {
       const files = Array.from(e.target.files).slice(0, 2);
-      uploadedImagesBase64 = [];
-      const previewContainer = document.getElementById('imagePreviewContainer');
-      previewContainer.innerHTML = '';
+      rawImageFiles = files; // Simpan file aslinya untuk di-upload ke Supabase Storage nanti
+      base64Images = []; // Bersihkan preview lama
+      
+      const previewContainer = document.getElementById("imagePreviewContainer");
+      previewContainer.innerHTML = "";
 
       files.forEach(file => {
         const reader = new FileReader();
-        reader.onload = (event) => {
-          uploadedImagesBase64.push(event.target.result);
-          const img = document.createElement('img');
-          img.src = event.target.result;
+        reader.onload = function(evt) {
+          base64Images.push(evt.target.result); // Hanya digunakan untuk preview antarmuka
+          const img = document.createElement("img");
+          img.src = evt.target.result;
           img.className = "w-16 h-16 object-cover rounded-lg border border-slate-200 shadow-sm";
           previewContainer.appendChild(img);
-        };
+        }
         reader.readAsDataURL(file);
       });
     }
 
-    // FETCH ORDERS & RENDER
-    async function fetchOrders() {
-      if (supabaseClient) {
-        try {
-          const { data, error } = await supabaseClient.from('orders').select('*');
-          if (!error && data) {
-            localOrders = data;
-            localStorage.setItem('rr_orders', JSON.stringify(localOrders));
-          }
-        } catch (err) {
-          console.warn("Using local storage fallback due to Supabase fetch error");
+    // FUNGSI BARU: Upload file ke Storage dan kembalikan URL publik
+    async function uploadFilesToSupabaseStorage() {
+      if (!rawImageFiles || rawImageFiles.length === 0) return [];
+      
+      const uploadedUrls = [];
+      for (const file of rawImageFiles) {
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${Date.now()}_${Math.random().toString(36).substring(2, 7)}.${fileExt}`;
+        const filePath = `designs/${fileName}`;
+
+        // Menggunakan bucket 'produk-rairaka'
+        const { data, error } = await supabaseClient.storage
+          .from('produk-rairaka')
+          .upload(filePath, file);
+
+        if (error) {
+          console.error("Gagal upload file:", error.message);
+          throw new Error(`Gagal mengunggah gambar: ${error.message}`);
+        }
+
+        const { data: publicURLData } = supabaseClient.storage
+          .from('produk-rairaka')
+          .getPublicUrl(filePath);
+
+        if (publicURLData && publicURLData.publicUrl) {
+          uploadedUrls.push(publicURLData.publicUrl);
         }
       }
-      renderDashboard();
+      return uploadedUrls;
     }
 
-    // RENDER DASHBOARD & KANBAN GROUPED BY DEADLINE
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      if (!supabaseClient) return alert("Koneksi Supabase belum terkonfigurasi!");
+
+      const btnSubmit = document.getElementById("btnSubmitOrder");
+      btnSubmit.disabled = true;
+      btnSubmit.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Mengunggah Foto & Menyimpan...`;
+
+      try {
+        // 1. UPLOAD GAMBAR KE STORAGE TERLEBIH DAHULU
+        let imageUrls = [];
+        try {
+          imageUrls = await uploadFilesToSupabaseStorage();
+        } catch (uploadError) {
+          alert(uploadError.message);
+          return; // Hentikan proses simpan jika upload gambar gagal
+        }
+
+        const queueNum = document.getElementById("autoQueueInput").value;
+        const idPesanan = `PROD-${queueNum}`;
+
+        // 2. BUAT PAYLOAD DATA
+        const payload = {
+          id_pesanan: idPesanan,
+          queue_number: queueNum,
+          customer_name: document.getElementById("customer_name").value,
+          phone: document.getElementById("phone").value,
+          deadline_date: document.getElementById("deadline_date").value,
+          order_source: document.getElementById("order_source").value,
+          school_level: document.getElementById("school_level").value,
+          product_type: document.getElementById("product_type").value,
+          completeness_type: document.getElementById("completeness_type").value,
+          screen_printing_status: document.getElementById("screen_printing_status").value,
+          screen_printing_location: document.getElementById("screen_printing_status").value === "Tanpa Sablon" ? "Tanpa Sablon" : document.getElementById("screen_printing_location").value,
+          size_s: parseInt(document.getElementById("size_s").value) || 0,
+          size_m: parseInt(document.getElementById("size_m").value) || 0,
+          size_l: parseInt(document.getElementById("size_l").value) || 0,
+          size_xl: parseInt(document.getElementById("size_xl").value) || 0,
+          size_2xl: parseInt(document.getElementById("size_2xl").value) || 0,
+          size_3xl: parseInt(document.getElementById("size_3xl").value) || 0,
+          size_4xl: parseInt(document.getElementById("size_4xl").value) || 0,
+          notes: document.getElementById("notes").value,
+          design_images: imageUrls, // MENYIMPAN URL DARI STORAGE (BUKAN BASE64 LAGI)
+          status_produksi: 'Antrean Potong'
+        };
+
+        // 3. SIMPAN KE DATABASE (TABEL PRODUCTION_ORDERS)
+        const { error } = await supabaseClient.from('production_orders').insert([payload]);
+        if (error) throw error;
+
+        alert(`✅ Pesanan #${idPesanan} berhasil disimpan ke Supabase!`);
+        document.getElementById("orderForm").reset();
+        
+        // RESET FILE DAN PREVIEW
+        base64Images = [];
+        rawImageFiles = [];
+        document.getElementById("imagePreviewContainer").innerHTML = "";
+        
+        switchTab('dashboard');
+
+      } catch (err) {
+        console.error("Gagal menyimpan order:", err);
+        alert("❌ Terjadi kesalahan saat menyimpan pesanan: " + err.message);
+      } finally {
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = `<i data-lucide="check-circle-2" class="w-5 h-5"></i> Simpan Order & Masukkan Antrean`;
+        lucide.createIcons();
+      }
+    }
+    // --- AKHIR DARI FUNGSI UPLOAD YANG DIUBAH ---
+
+    async function fetchOrders() {
+      if (!supabaseClient) return;
+
+      try {
+        const { data, error } = await supabaseClient
+          .from('production_orders')
+          .select('*')
+          .order('deadline_date', { ascending: true });
+
+        if (error) throw error;
+
+        currentOrders = data || [];
+        renderDashboard();
+        renderHistory();
+
+      } catch (err) {
+        console.error("Gagal mengambil data pesanan:", err);
+      }
+    }
+
     function renderDashboard() {
-      const activeOrders = localOrders.filter(o => o.status_produksi !== 'Selesai');
-      const completedOrders = localOrders.filter(o => o.status_produksi === 'Selesai');
-
-      // Update Metrics
-      document.getElementById('metric-active-orders').textContent = activeOrders.length;
-      document.getElementById('metric-completed-orders').textContent = completedOrders.length;
-
+      const activeOrders = currentOrders.filter(o => o.status_produksi !== 'Selesai');
+      
+      document.getElementById("metric-active-orders").innerText = activeOrders.length;
+      
       let totalUnits = 0;
       let urgentCount = 0;
+      let totalLabor = 0;
+
       const today = new Date().toISOString().split('T')[0];
 
       activeOrders.forEach(o => {
-        const qty = o.quantity || {};
-        const sumQty = (qty.s || 0) + (qty.m || 0) + (qty.l || 0) + (qty.xl || 0) + (qty['2xl'] || 0) + (qty['3xl'] || 0) + (qty['4xl'] || 0);
-        totalUnits += sumQty;
+        totalUnits += (o.total_unit || 0);
+        totalLabor += (o.total_upah_borongan || 0);
+        if (o.deadline_date <= today) urgentCount++;
+      });
 
-        if (o.deadline_date) {
-          const diffDays = Math.ceil((new Date(o.deadline_date) - new Date(today)) / (1000 * 60 * 60 * 24));
-          if (diffDays <= 3) urgentCount++;
+      document.getElementById("metric-total-units").innerText = `${totalUnits} stel/pcs`;
+      document.getElementById("metric-urgent-orders").innerText = urgentCount;
+      document.getElementById("metric-labor-cost").innerText = `Rp ${totalLabor.toLocaleString('id-ID')}`;
+
+      const columns = {
+        'Antrean Potong': document.getElementById("col-potong"),
+        'Proses Jahit': document.getElementById("col-jahit"),
+        'Proses Sablon': document.getElementById("col-sablon"),
+        'Proses Packing': document.getElementById("col-packing")
+      };
+
+      const counts = {
+        'Antrean Potong': document.getElementById("count-potong"),
+        'Proses Jahit': document.getElementById("count-jahit"),
+        'Proses Sablon': document.getElementById("count-sablon"),
+        'Proses Packing': document.getElementById("count-packing")
+      };
+
+      Object.keys(columns).forEach(key => {
+        columns[key].innerHTML = "";
+        counts[key].innerText = "0";
+      });
+
+      const columnCounts = { 'Antrean Potong': 0, 'Proses Jahit': 0, 'Proses Sablon': 0, 'Proses Packing': 0 };
+
+      activeOrders.forEach(o => {
+        const col = columns[o.status_produksi];
+        if (col) {
+          columnCounts[o.status_produksi]++;
+          col.appendChild(createOrderCard(o));
         }
       });
 
-      document.getElementById('metric-total-units').textContent = `${totalUnits} unit`;
-      document.getElementById('metric-urgent-orders').textContent = urgentCount;
-
-      // Group & Render Kanban Stages by Deadline
-      const stages = [
-        { id: 'col-potong', countId: 'count-potong', name: 'Antrean Potong' },
-        { id: 'col-jahit', countId: 'count-jahit', name: 'Proses Jahit' },
-        { id: 'col-sablon', countId: 'count-sablon', name: 'Proses Sablon' },
-        { id: 'col-packing', countId: 'count-packing', name: 'Proses Packing' }
-      ];
-
-      stages.forEach(stage => {
-        const stageOrders = activeOrders.filter(o => o.status_produksi === stage.name);
-        document.getElementById(stage.countId).textContent = stageOrders.length;
-        
-        const container = document.getElementById(stage.id);
-        container.innerHTML = '';
-
-        if (stageOrders.length === 0) {
-          container.innerHTML = `<p class="text-xs text-slate-400 text-center py-8 italic">Tidak ada antrean</p>`;
-          return;
-        }
-
-        // Group Orders by Deadline Date
-        const groupedByDeadline = {};
-        stageOrders.forEach(order => {
-          const deadline = order.deadline_date || 'Tanpa Deadline';
-          if (!groupedByDeadline[deadline]) groupedByDeadline[deadline] = [];
-          groupedByDeadline[deadline].push(order);
-        });
-
-        // Sort Deadlines Chronologically
-        const sortedDeadlines = Object.keys(groupedByDeadline).sort((a, b) => {
-          if (a === 'Tanpa Deadline') return 1;
-          if (b === 'Tanpa Deadline') return -1;
-          return new Date(a) - new Date(b);
-        });
-
-        // Render Deadline Groups inside Column
-        sortedDeadlines.forEach(dateKey => {
-          const groupOrders = groupedByDeadline[dateKey];
-          
-          // Badge & Color formatting for deadline header
-          let dateFormatted = dateKey;
-          let badgeColor = "bg-slate-200 text-slate-700 border-slate-300";
-          if (dateKey !== 'Tanpa Deadline') {
-            const dateObj = new Date(dateKey);
-            dateFormatted = dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-            
-            const diffDays = Math.ceil((dateObj - new Date(today)) / (1000 * 60 * 60 * 24));
-            if (diffDays < 0) {
-              badgeColor = "bg-red-100 text-red-800 border-red-300";
-              dateFormatted += " (Lewat)";
-            } else if (diffDays === 0) {
-              badgeColor = "bg-red-100 text-red-800 border-red-300";
-              dateFormatted += " (Hari Ini)";
-            } else if (diffDays <= 3) {
-              badgeColor = "bg-amber-100 text-amber-800 border-amber-300";
-            } else {
-              badgeColor = "bg-indigo-50 text-indigo-700 border-indigo-200";
-            }
-          }
-
-          const groupEl = document.createElement('div');
-          groupEl.className = "space-y-2";
-          groupEl.innerHTML = `
-            <div class="flex items-center justify-between px-2 py-1 rounded-lg border text-[11px] font-bold ${badgeColor}">
-              <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3 h-3"></i> ${dateFormatted}</span>
-              <span class="text-[10px] bg-white/70 px-1.5 py-0.5 rounded-md font-extrabold">${groupOrders.length} Order</span>
-            </div>
-            <div class="cards-container space-y-2.5"></div>
-          `;
-
-          const cardsContainer = groupEl.querySelector('.cards-container');
-          groupOrders.forEach(order => {
-            cardsContainer.appendChild(createOrderCard(order));
-          });
-
-          container.appendChild(groupEl);
-        });
+      Object.keys(counts).forEach(key => {
+        counts[key].innerText = columnCounts[key];
       });
 
-      // Render History
-      renderHistory(completedOrders);
       lucide.createIcons();
     }
 
-    // CREATE ORDER CARD HTML
     function createOrderCard(order) {
-      const qty = order.quantity || {};
-      const totalUnits = (qty.s || 0) + (qty.m || 0) + (qty.l || 0) + (qty.xl || 0) + (qty['2xl'] || 0) + (qty['3xl'] || 0) + (qty['4xl'] || 0);
+      const card = document.createElement("div");
+      card.className = "bg-white p-4 rounded-xl shadow-sm border border-slate-200/90 hover:shadow-md transition space-y-3";
 
-      const card = document.createElement('div');
-      card.className = "bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition relative group";
-      
+      const nextStageMap = {
+        'Antrean Potong': 'Proses Jahit',
+        'Proses Jahit': 'Proses Sablon',
+        'Proses Sablon': 'Proses Packing',
+        'Proses Packing': 'Selesai'
+      };
+
+      const nextStage = nextStageMap[order.status_produksi];
+
+      const imgHtml = (order.design_images && order.design_images.length > 0) 
+        ? `<img src="${order.design_images[0]}" class="w-12 h-12 object-cover rounded-lg border border-slate-100">`
+        : `<div class="w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400"><i data-lucide="image" class="w-5 h-5"></i></div>`;
+
       card.innerHTML = `
-        <div class="flex items-start justify-between gap-2 mb-1.5">
-          <span class="text-[10px] font-extrabold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-md border border-brand-100">${order.queue_number || order.id}</span>
-          <span class="text-[10px] text-slate-500 font-medium">${order.school_level || ''}</span>
+        <div class="flex items-start justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <span class="bg-slate-900 text-white font-black text-xs px-2 py-1 rounded-md">#${order.queue_number}</span>
+            <div>
+              <h4 class="font-bold text-xs text-slate-900 leading-tight">${order.customer_name}</h4>
+              <p class="text-[10px] text-slate-400">${order.school_level} • ${order.order_source}</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-1">
+            ${imgHtml}
+          </div>
         </div>
 
-        <h4 class="font-bold text-sm text-slate-800 leading-snug mb-1">${order.customer_name}</h4>
-        
-        <div class="text-xs text-slate-600 space-y-1 mb-2">
-          <p class="flex items-center gap-1.5 text-[11px]">
-            <i data-lucide="package" class="w-3.5 h-3.5 text-slate-400"></i> ${order.product_type || 'Seragam'} (${order.completeness_type || 'Set'})
-          </p>
-          <p class="flex items-center gap-1.5 text-[11px] font-semibold text-slate-700">
-            <i data-lucide="layers" class="w-3.5 h-3.5 text-brand-500"></i> ${totalUnits} Unit Total
-          </p>
+        <div class="bg-slate-50 p-2 rounded-lg text-[11px] font-medium text-slate-700 space-y-1">
+          <div class="flex justify-between">
+            <span>Produk:</span>
+            <span class="font-bold">${order.product_type} (${order.completeness_type})</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Total Qty:</span>
+            <span class="font-bold text-brand-600">${order.total_unit} stel/pcs (${order.total_pcs_internal} pcs)</span>
+          </div>
         </div>
 
-        ${order.notes ? `<p class="text-[10px] text-amber-700 bg-amber-50 p-1.5 rounded-md mb-2 border border-amber-100 line-clamp-2"><b>Note:</b> ${order.notes}</p>` : ''}
-
-        <div class="pt-2 border-t border-slate-100 flex items-center justify-between gap-1">
-          <button onclick="openLkpModal('${order.id}')" class="text-[11px] text-brand-600 hover:text-brand-800 font-bold flex items-center gap-1 bg-brand-50 px-2 py-1 rounded-lg">
-            <i data-lucide="file-text" class="w-3 h-3"></i> LKP
-          </button>
+        <div class="flex items-center justify-between text-[11px] border-t border-slate-100 pt-2">
+          <span class="text-slate-500 font-medium">Deadline: <strong class="text-slate-800">${order.deadline_date}</strong></span>
           
-          <button onclick="openEditModal('${order.id}')" class="text-[11px] text-slate-600 hover:text-slate-900 font-bold flex items-center gap-1 bg-slate-100 px-2 py-1 rounded-lg">
-            <i data-lucide="edit-3" class="w-3 h-3"></i> Edit
-          </button>
+          <div class="flex items-center gap-1.5">
+            <button onclick="openLkpModal('${order.id}')" class="text-brand-600 hover:text-brand-800 font-bold flex items-center gap-0.5 text-[11px]" title="Lihat LKP">
+              <i data-lucide="file-text" class="w-3.5 h-3.5"></i> LKP
+            </button>
+            <button onclick="openEditModal('${order.id}')" class="p-1 text-slate-400 hover:text-amber-600 transition rounded" title="Edit Pesanan">
+              <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+            </button>
+            <button onclick="confirmDeleteOrder('${order.id}')" class="p-1 text-slate-400 hover:text-red-600 transition rounded" title="Hapus Pesanan">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex gap-1.5 pt-1">
+          ${order.phone ? `
+            <a href="https://wa.me/${order.phone.replace(/[^0-9]/g,'')}?text=Halo%20${encodeURIComponent(order.customer_name)},%20update%20pesanan%20${order.id_pesanan}%20saat%20ini%20masuk%20tahap:%20*${encodeURIComponent(order.status_produksi)}*." target="_blank" class="p-2 bg-emerald-50 text-emerald-600 rounded-lg font-bold text-xs hover:bg-emerald-100 transition flex items-center justify-center flex-1" title="Kirim WA">
+              <i data-lucide="message-square" class="w-4 h-4"></i>
+            </a>
+          ` : ''}
+          ${nextStage ? `
+            <button onclick="updateOrderStatus('${order.id}', '${nextStage}')" class="flex-2 w-full bg-slate-900 hover:bg-brand-600 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition flex items-center justify-center gap-1">
+              <span>Lanjut: ${nextStage.replace('Proses ','')}</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+          ` : ''}
         </div>
       `;
+
       return card;
     }
 
-    // RENDER HISTORY
-    function renderHistory(completedOrders) {
-      const container = document.getElementById('history-container');
-      document.getElementById('history-count-badge').textContent = `${completedOrders.length} Selesai`;
-      container.innerHTML = '';
+    async function updateOrderStatus(orderId, newStatus) {
+      if (!supabaseClient) return;
 
-      if (completedOrders.length === 0) {
-        container.innerHTML = `<p class="text-xs text-slate-400 col-span-full text-center py-12">Belum ada riwayat order selesai.</p>`;
+      try {
+        const { error } = await supabaseClient
+          .from('production_orders')
+          .update({ status_produksi: newStatus })
+          .eq('id', orderId);
+
+        if (error) throw error;
+        showToast(`Status diperbarui ke: ${newStatus}`, "success");
+        fetchOrders();
+      } catch (err) {
+        showToast("Gagal mengupdate status: " + err.message, "error");
+      }
+    }
+
+    function renderHistory() {
+      const historyOrders = currentOrders.filter(o => o.status_produksi === 'Selesai');
+      document.getElementById("history-count-badge").innerText = `${historyOrders.length} Selesai`;
+
+      const container = document.getElementById("history-container");
+      container.innerHTML = "";
+
+      if (historyOrders.length === 0) {
+        container.innerHTML = `<div class="col-span-full py-12 text-center text-slate-400 text-sm">Belum ada pesanan yang diselesaikan.</div>`;
         return;
       }
 
-      completedOrders.forEach(order => {
-        const qty = order.quantity || {};
-        const totalUnits = (qty.s || 0) + (qty.m || 0) + (qty.l || 0) + (qty.xl || 0) + (qty['2xl'] || 0) + (qty['3xl'] || 0) + (qty['4xl'] || 0);
-
-        const card = document.createElement('div');
-        card.className = "bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-2";
+      historyOrders.forEach(o => {
+        const card = document.createElement("div");
+        card.className = "bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex justify-between items-center";
         card.innerHTML = `
-          <div class="flex justify-between items-center">
-            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">${order.queue_number || order.id}</span>
-            <span class="text-[10px] text-slate-400">Deadline: ${order.deadline_date || '-'}</span>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="bg-emerald-100 text-emerald-800 font-bold text-xs px-2 py-0.5 rounded-full">SELESAI</span>
+              <span class="text-xs text-slate-400 font-mono">#${o.queue_number}</span>
+            </div>
+            <h4 class="font-bold text-sm text-slate-800">${o.customer_name}</h4>
+            <p class="text-xs text-slate-500">${o.product_type} • Total ${o.total_unit} Stel/PCS</p>
           </div>
-          <h4 class="font-bold text-slate-800 text-sm">${order.customer_name}</h4>
-          <p class="text-xs text-slate-500">${order.product_type} • ${totalUnits} Unit</p>
-          <div class="pt-2 flex justify-end gap-2">
-            <button onclick="openLkpModal('${order.id}')" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3 py-1.5 rounded-lg flex items-center gap-1">
-              <i data-lucide="printer" class="w-3.5 h-3.5"></i> Cetak LKP
+          <div class="flex items-center gap-1">
+            <button onclick="openLkpModal('${o.id}')" class="p-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-700 font-bold text-xs flex items-center gap-1">
+              <i data-lucide="printer" class="w-4 h-4"></i> LKP
+            </button>
+            <button onclick="openEditModal('${o.id}')" class="p-2 text-slate-400 hover:text-amber-600 transition rounded-lg" title="Edit Pesanan">
+              <i data-lucide="edit-3" class="w-4 h-4"></i>
+            </button>
+            <button onclick="confirmDeleteOrder('${o.id}')" class="p-2 text-slate-400 hover:text-red-600 transition rounded-lg" title="Hapus Pesanan">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
             </button>
           </div>
         `;
         container.appendChild(card);
       });
+
+      lucide.createIcons();
     }
 
-    // SAVE ORDER FORM SUBMIT
-    async function handleFormSubmit(e) {
-      e.preventDefault();
-      
-      const newOrder = {
-        id: document.getElementById('autoQueueInput').value,
-        queue_number: document.getElementById('autoQueueInput').value,
-        customer_name: document.getElementById('customer_name').value,
-        phone: document.getElementById('phone').value,
-        deadline_date: document.getElementById('deadline_date').value,
-        order_source: document.getElementById('order_source').value,
-        school_level: document.getElementById('school_level').value,
-        product_type: document.getElementById('product_type').value,
-        completeness_type: document.getElementById('completeness_type').value,
-        screen_printing_status: document.getElementById('screen_printing_status').value,
-        screen_printing_location: document.getElementById('screen_printing_location').value,
-        status_produksi: 'Antrean Potong',
-        notes: document.getElementById('notes').value,
-        images: uploadedImagesBase64,
-        created_at: new Date().toISOString(),
-        quantity: {
-          s: parseInt(document.getElementById('size_s').value) || 0,
-          m: parseInt(document.getElementById('size_m').value) || 0,
-          l: parseInt(document.getElementById('size_l').value) || 0,
-          xl: parseInt(document.getElementById('size_xl').value) || 0,
-          '2xl': parseInt(document.getElementById('size_2xl').value) || 0,
-          '3xl': parseInt(document.getElementById('size_3xl').value) || 0,
-          '4xl': parseInt(document.getElementById('size_4xl').value) || 0,
-        }
-      };
-
-      if (supabaseClient) {
-        try {
-          await supabaseClient.from('orders').insert([newOrder]);
-        } catch (err) {
-          console.warn("Save to Supabase failed, saving locally");
-        }
-      }
-
-      localOrders.unshift(newOrder);
-      localStorage.setItem('rr_orders', JSON.stringify(localOrders));
-
-      alert('Order berhasil disimpan dan masuk ke antrean potong!');
-      document.getElementById('orderForm').reset();
-      uploadedImagesBase64 = [];
-      document.getElementById('imagePreviewContainer').innerHTML = '';
-      generateAutoQueueNumber();
-      switchTab('dashboard');
-    }
-
-    // EDIT MODAL HANDLERS
     function openEditModal(orderId) {
-      const order = localOrders.find(o => o.id === orderId);
+      const order = currentOrders.find(o => o.id === orderId);
       if (!order) return;
 
-      document.getElementById('edit_order_id').value = order.id;
-      document.getElementById('edit_customer_name').value = order.customer_name || '';
-      document.getElementById('edit_phone').value = order.phone || '';
-      document.getElementById('edit_deadline_date').value = order.deadline_date || '';
-      document.getElementById('edit_status_produksi').value = order.status_produksi || 'Antrean Potong';
-      document.getElementById('edit_order_source').value = order.order_source || 'WhatsApp';
-      document.getElementById('edit_school_level').value = order.school_level || 'SD';
-      document.getElementById('edit_completeness_type').value = order.completeness_type || 'Satu Stel';
-      document.getElementById('edit_screen_printing_status').value = order.screen_printing_status || 'Sablon';
-      document.getElementById('edit_screen_printing_location').value = order.screen_printing_location || 'Baju & Celana';
-      document.getElementById('edit_notes').value = order.notes || '';
-
-      const qty = order.quantity || {};
-      document.getElementById('edit_size_s').value = qty.s || 0;
-      document.getElementById('edit_size_m').value = qty.m || 0;
-      document.getElementById('edit_size_l').value = qty.l || 0;
-      document.getElementById('edit_size_xl').value = qty.xl || 0;
-      document.getElementById('edit_size_2xl').value = qty['2xl'] || 0;
-      document.getElementById('edit_size_3xl').value = qty['3xl'] || 0;
-      document.getElementById('edit_size_4xl').value = qty['4xl'] || 0;
+      document.getElementById("edit_order_id").value = order.id;
+      document.getElementById("editModalSubhead").innerText = `Edit Order #${order.queue_number} (${order.id_pesanan})`;
+      document.getElementById("edit_customer_name").value = order.customer_name || "";
+      document.getElementById("edit_phone").value = order.phone || "";
+      document.getElementById("edit_deadline_date").value = order.deadline_date || "";
+      document.getElementById("edit_status_produksi").value = order.status_produksi || "Antrean Potong";
+      document.getElementById("edit_order_source").value = order.order_source || "WhatsApp";
+      document.getElementById("edit_school_level").value = order.school_level || "SD";
+      document.getElementById("edit_completeness_type").value = order.completeness_type || "Satu Stel";
+      document.getElementById("edit_screen_printing_status").value = order.screen_printing_status || "Tanpa Sablon";
+      document.getElementById("edit_screen_printing_location").value = order.screen_printing_location || "Tanpa Sablon";
+      
+      document.getElementById("edit_size_s").value = order.size_s || 0;
+      document.getElementById("edit_size_m").value = order.size_m || 0;
+      document.getElementById("edit_size_l").value = order.size_l || 0;
+      document.getElementById("edit_size_xl").value = order.size_xl || 0;
+      document.getElementById("edit_size_2xl").value = order.size_2xl || 0;
+      document.getElementById("edit_size_3xl").value = order.size_3xl || 0;
+      document.getElementById("edit_size_4xl").value = order.size_4xl || 0;
+      document.getElementById("edit_notes").value = order.notes || "";
 
       toggleEditSablonLocation();
-      document.getElementById('editModal').classList.remove('hidden');
+      calculateEditLaborFees();
+
+      document.getElementById("editModal").classList.remove("hidden");
     }
 
     function closeEditModal() {
-      document.getElementById('editModal').classList.add('hidden');
+      document.getElementById("editModal").classList.add("hidden");
+    }
+
+    function toggleEditSablonLocation() {
+      const status = document.getElementById("edit_screen_printing_status").value;
+      const container = document.getElementById("editSablonLocationContainer");
+      if (status === "Tanpa Sablon") {
+        container.classList.add("hidden");
+      } else {
+        container.classList.remove("hidden");
+      }
+      calculateEditLaborFees();
+    }
+
+    function calculateEditLaborFees() {
+      const s = parseInt(document.getElementById("edit_size_s").value) || 0;
+      const m = parseInt(document.getElementById("edit_size_m").value) || 0;
+      const l = parseInt(document.getElementById("edit_size_l").value) || 0;
+      const xl = parseInt(document.getElementById("edit_size_xl").value) || 0;
+      const x2l = parseInt(document.getElementById("edit_size_2xl").value) || 0;
+      const x3l = parseInt(document.getElementById("edit_size_3xl").value) || 0;
+      const x4l = parseInt(document.getElementById("edit_size_4xl").value) || 0;
+
+      const totalUnit = s + m + l + xl + x2l + x3l + x4l;
+      const completeness = document.getElementById("edit_completeness_type").value;
+      const isStel = completeness === "Satu Stel";
+      const totalPcsInt = isStel ? totalUnit * 2 : totalUnit;
+
+      const upahPotong = totalUnit * (isStel ? 3000 : 1000);
+      const upahJahit = totalUnit * (isStel ? 7000 : 3500);
+      
+      const sablonStatus = document.getElementById("edit_screen_printing_status").value;
+      const sablonLoc = document.getElementById("edit_screen_printing_location").value;
+      let upahSablon = 0;
+      if (sablonStatus === "Sablon") {
+        upahSablon = totalUnit * (sablonLoc === "Baju & Celana" ? 2000 : 1000);
+      }
+
+      const upahPacking = totalUnit * (isStel ? 500 : 250);
+      const totalUpah = upahPotong + upahJahit + upahSablon + upahPacking;
+
+      document.getElementById("edit-preview-total-unit").innerText = `${totalUnit} ${isStel ? 'stel' : 'pcs'} (${totalPcsInt} pcs int)`;
+      document.getElementById("edit-preview-total-upah").innerText = `Rp ${totalUpah.toLocaleString('id-ID')}`;
     }
 
     async function handleEditFormSubmit(e) {
       e.preventDefault();
-      const orderId = document.getElementById('edit_order_id').value;
-      const index = localOrders.findIndex(o => o.id === orderId);
-      if (index === -1) return;
+      if (!supabaseClient) return showToast("Koneksi Supabase belum aktif!", "error");
 
-      const updatedOrder = {
-        ...localOrders[index],
-        customer_name: document.getElementById('edit_customer_name').value,
-        phone: document.getElementById('edit_phone').value,
-        deadline_date: document.getElementById('edit_deadline_date').value,
-        status_produksi: document.getElementById('edit_status_produksi').value,
-        order_source: document.getElementById('edit_order_source').value,
-        school_level: document.getElementById('edit_school_level').value,
-        completeness_type: document.getElementById('edit_completeness_type').value,
-        screen_printing_status: document.getElementById('edit_screen_printing_status').value,
-        screen_printing_location: document.getElementById('edit_screen_printing_location').value,
-        notes: document.getElementById('edit_notes').value,
-        quantity: {
-          s: parseInt(document.getElementById('edit_size_s').value) || 0,
-          m: parseInt(document.getElementById('edit_size_m').value) || 0,
-          l: parseInt(document.getElementById('edit_size_l').value) || 0,
-          xl: parseInt(document.getElementById('edit_size_xl').value) || 0,
-          '2xl': parseInt(document.getElementById('edit_size_2xl').value) || 0,
-          '3xl': parseInt(document.getElementById('edit_size_3xl').value) || 0,
-          '4xl': parseInt(document.getElementById('edit_size_4xl').value) || 0,
-        }
-      };
+      const orderId = document.getElementById("edit_order_id").value;
+      const btnSave = document.getElementById("btnSaveEditOrder");
+      btnSave.disabled = true;
+      btnSave.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Menyimpan...`;
 
-      if (supabaseClient) {
-        try {
-          await supabaseClient.from('orders').update(updatedOrder).eq('id', orderId);
-        } catch (err) {
-          console.warn("Update Supabase failed");
-        }
+      try {
+        const payload = {
+          customer_name: document.getElementById("edit_customer_name").value,
+          phone: document.getElementById("edit_phone").value,
+          deadline_date: document.getElementById("edit_deadline_date").value,
+          status_produksi: document.getElementById("edit_status_produksi").value,
+          order_source: document.getElementById("edit_order_source").value,
+          school_level: document.getElementById("edit_school_level").value,
+          completeness_type: document.getElementById("edit_completeness_type").value,
+          screen_printing_status: document.getElementById("edit_screen_printing_status").value,
+          screen_printing_location: document.getElementById("edit_screen_printing_status").value === "Tanpa Sablon" ? "Tanpa Sablon" : document.getElementById("edit_screen_printing_location").value,
+          size_s: parseInt(document.getElementById("edit_size_s").value) || 0,
+          size_m: parseInt(document.getElementById("edit_size_m").value) || 0,
+          size_l: parseInt(document.getElementById("edit_size_l").value) || 0,
+          size_xl: parseInt(document.getElementById("edit_size_xl").value) || 0,
+          size_2xl: parseInt(document.getElementById("edit_size_2xl").value) || 0,
+          size_3xl: parseInt(document.getElementById("edit_size_3xl").value) || 0,
+          size_4xl: parseInt(document.getElementById("edit_size_4xl").value) || 0,
+          notes: document.getElementById("edit_notes").value
+        };
+
+        const { error } = await supabaseClient
+          .from('production_orders')
+          .update(payload)
+          .eq('id', orderId);
+
+        if (error) throw error;
+
+        showToast("✅ Pesanan berhasil diperbarui!", "success");
+        closeEditModal();
+        fetchOrders();
+
+      } catch (err) {
+        console.error("Gagal memperbarui order:", err);
+        showToast("❌ Gagal menyimpan perubahan: " + err.message, "error");
+      } finally {
+        btnSave.disabled = false;
+        btnSave.innerHTML = `<i data-lucide="save" class="w-4 h-4"></i> Simpan Perubahan`;
+        lucide.createIcons();
       }
-
-      localOrders[index] = updatedOrder;
-      localStorage.setItem('rr_orders', JSON.stringify(localOrders));
-
-      closeEditModal();
-      renderDashboard();
     }
 
-    async function deleteCurrentOrder() {
-      const orderId = document.getElementById('edit_order_id').value;
-      if (!confirm('Apakah Anda yakin ingin menghapus order ini?')) return;
-
-      if (supabaseClient) {
-        try {
-          await supabaseClient.from('orders').delete().eq('id', orderId);
-        } catch (err) {
-          console.warn("Delete Supabase failed");
-        }
-      }
-
-      localOrders = localOrders.filter(o => o.id !== orderId);
-      localStorage.setItem('rr_orders', JSON.stringify(localOrders));
-
-      closeEditModal();
-      renderDashboard();
-    }
-
-    // LKP MODAL & PRINTING
-    function openLkpModal(orderId) {
-      const order = localOrders.find(o => o.id === orderId);
+    function confirmDeleteOrder(orderId) {
+      const order = currentOrders.find(o => o.id === orderId);
       if (!order) return;
 
-      currentLkpOrder = order;
-      const qty = order.quantity || {};
-      const totalUnits = (qty.s || 0) + (qty.m || 0) + (qty.l || 0) + (qty.xl || 0) + (qty['2xl'] || 0) + (qty['3xl'] || 0) + (qty['4xl'] || 0);
+      deleteTargetId = orderId;
+      document.getElementById("deleteTargetText").innerHTML = `Anda yakin ingin menghapus pesanan <strong>#${order.queue_number} (${order.customer_name})</strong>? Tindakan ini tidak dapat dibatalkan.`;
+      document.getElementById("deleteConfirmModal").classList.remove("hidden");
+    }
 
-      const printArea = document.getElementById('lkp-print-area');
+    function closeDeleteModal() {
+      deleteTargetId = null;
+      document.getElementById("deleteConfirmModal").classList.add("hidden");
+    }
+
+    async function executeDeleteOrder() {
+      if (!deleteTargetId || !supabaseClient) return;
+
+      const btnConfirm = document.getElementById("btnConfirmDelete");
+      btnConfirm.disabled = true;
+      btnConfirm.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Menghapus...`;
+
+      try {
+        const { error } = await supabaseClient
+          .from('production_orders')
+          .delete()
+          .eq('id', deleteTargetId);
+
+        if (error) throw error;
+
+        showToast("🗑️ Pesanan berhasil dihapus!", "success");
+        closeDeleteModal();
+        fetchOrders();
+
+      } catch (err) {
+        console.error("Gagal menghapus order:", err);
+        showToast("❌ Gagal menghapus pesanan: " + err.message, "error");
+      } finally {
+        btnConfirm.disabled = false;
+        btnConfirm.innerHTML = `<i data-lucide="trash-2" class="w-4 h-4"></i> Ya, Hapus`;
+        lucide.createIcons();
+      }
+    }
+
+    function openLkpModal(orderId) {
+      const order = currentOrders.find(o => o.id === orderId);
+      if (!order) return;
+      currentLkpOrder = order;
+
+      const printArea = document.getElementById("lkp-print-area");
+
+      const imagesHtml = (order.design_images && order.design_images.length > 0)
+        ? `<div class="flex gap-2 justify-center my-3">${order.design_images.map(img => `<img src="${img}" class="h-32 object-contain rounded border border-slate-300">`).join('')}</div>`
+        : `<p class="text-center text-xs text-slate-400 italic my-2">Tanpa Foto Mockup</p>`;
+
       printArea.innerHTML = `
-        <div class="border-2 border-slate-900 p-6 rounded-none font-sans text-slate-900">
-          <!-- KOP LKP -->
-          <div class="flex justify-between items-center border-b-2 border-slate-900 pb-4 mb-4">
+        <div class="border-2 border-slate-900 p-4 font-sans text-slate-900">
+          <div class="text-center border-b-2 border-slate-900 pb-3 mb-3">
+            <h2 class="text-2xl font-black tracking-wider">LEMBAR KERJA PRODUKSI (LKP)</h2>
+            <h3 class="text-base font-bold text-slate-700">RAI_RAKA APPAREL MANUFACTURING</h3>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 text-xs mb-3 border-b border-slate-300 pb-3">
             <div>
-              <h2 class="text-2xl font-black tracking-tight">RAI_RAKA OFFICIAL</h2>
-              <p class="text-xs font-bold uppercase tracking-wider text-slate-600">Lembar Kerja Produksi (LKP)</p>
+              <p><strong>NO. ANTREAN:</strong> <span class="text-lg font-black bg-slate-900 text-white px-2 py-0.5 rounded">#${order.queue_number}</span></p>
+              <p class="mt-1"><strong>ID PESANAN:</strong> ${order.id_pesanan}</p>
+              <p><strong>NAMA PEMESAN:</strong> ${order.customer_name}</p>
+              <p><strong>SUMBER ORDER:</strong> ${order.order_source}</p>
             </div>
             <div class="text-right">
-              <span class="text-sm font-black border-2 border-slate-900 px-3 py-1 uppercase">${order.queue_number || order.id}</span>
-              <p class="text-[10px] mt-1 text-slate-500">Tgl Deadline: <b>${order.deadline_date || '-'}</b></p>
+              <p><strong>TGL MASUK:</strong> ${new Date(order.created_at).toLocaleDateString('id-ID')}</p>
+              <p class="text-red-600 font-bold"><strong>DEADLINE:</strong> ${order.deadline_date}</p>
+              <p><strong>JENJANG:</strong> ${order.school_level}</p>
             </div>
           </div>
 
-          <!-- DETAIL PELANGGAN -->
-          <table class="w-full text-xs mb-4 border-collapse">
-            <tr>
-              <td class="font-bold py-1 w-28">Nama Pemesan</td>
-              <td class="py-1">: ${order.customer_name}</td>
-              <td class="font-bold py-1 w-28">Jenjang / Sumber</td>
-              <td class="py-1">: ${order.school_level || '-'} / ${order.order_source || '-'}</td>
-            </tr>
-            <tr>
-              <td class="font-bold py-1">Jenis Produk</td>
-              <td class="py-1">: ${order.product_type} (${order.completeness_type})</td>
-              <td class="font-bold py-1">Sablon</td>
-              <td class="py-1">: ${order.screen_printing_status} (${order.screen_printing_location || '-'})</td>
-            </tr>
-          </table>
+          <div class="bg-slate-100 p-2.5 rounded text-xs mb-3">
+            <p><strong>PRODUK:</strong> ${order.product_type} (${order.completeness_type})</p>
+            <p><strong>STATUS SABLON:</strong> ${order.screen_printing_status} (${order.screen_printing_location})</p>
+          </div>
 
-          <!-- MATRIX UKURAN -->
-          <div class="mb-4">
-            <p class="text-xs font-bold mb-1 uppercase">Rincian Ukuran Pemesanan:</p>
-            <table class="w-full text-center border-collapse border border-slate-900 text-xs">
+          ${imagesHtml}
+
+          <div class="my-3">
+            <p class="text-xs font-bold mb-1">RINCIAN UKURAN (QUANTITY):</p>
+            <table class="w-full text-center text-xs border-collapse border border-slate-900">
               <thead>
-                <tr class="bg-slate-100 border-b border-slate-900">
-                  <th class="border-r border-slate-900 py-1.5">S</th>
-                  <th class="border-r border-slate-900 py-1.5">M</th>
-                  <th class="border-r border-slate-900 py-1.5">L</th>
-                  <th class="border-r border-slate-900 py-1.5">XL</th>
-                  <th class="border-r border-slate-900 py-1.5">2XL</th>
-                  <th class="border-r border-slate-900 py-1.5">3XL</th>
-                  <th class="border-r border-slate-900 py-1.5">4XL</th>
-                  <th class="py-1.5 bg-slate-200">TOTAL</th>
+                <tr class="bg-slate-900 text-white font-bold">
+                  <th class="border border-slate-900 p-1">S</th>
+                  <th class="border border-slate-900 p-1">M</th>
+                  <th class="border border-slate-900 p-1">L</th>
+                  <th class="border border-slate-900 p-1">XL</th>
+                  <th class="border border-slate-900 p-1">2XL</th>
+                  <th class="border border-slate-900 p-1">3XL</th>
+                  <th class="border border-slate-900 p-1">4XL</th>
+                  <th class="border border-slate-900 p-1 bg-slate-800">TOTAL UNIT</th>
                 </tr>
               </thead>
               <tbody>
                 <tr class="font-bold">
-                  <td class="border-r border-slate-900 py-2">${qty.s || 0}</td>
-                  <td class="border-r border-slate-900 py-2">${qty.m || 0}</td>
-                  <td class="border-r border-slate-900 py-2">${qty.l || 0}</td>
-                  <td class="border-r border-slate-900 py-2">${qty.xl || 0}</td>
-                  <td class="border-r border-slate-900 py-2">${qty['2xl'] || 0}</td>
-                  <td class="border-r border-slate-900 py-2">${qty['3xl'] || 0}</td>
-                  <td class="border-r border-slate-900 py-2">${qty['4xl'] || 0}</td>
-                  <td class="py-2 bg-slate-100">${totalUnits} Unit</td>
+                  <td class="border border-slate-900 p-1.5">${order.size_s}</td>
+                  <td class="border border-slate-900 p-1.5">${order.size_m}</td>
+                  <td class="border border-slate-900 p-1.5">${order.size_l}</td>
+                  <td class="border border-slate-900 p-1.5">${order.size_xl}</td>
+                  <td class="border border-slate-900 p-1.5">${order.size_2xl}</td>
+                  <td class="border border-slate-900 p-1.5">${order.size_3xl}</td>
+                  <td class="border border-slate-900 p-1.5">${order.size_4xl}</td>
+                  <td class="border border-slate-900 p-1.5 bg-slate-100">${order.total_unit}</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <!-- CATATAN PRODUKSI -->
-          ${order.notes ? `
-          <div class="mb-4 p-2.5 border border-slate-900 text-xs bg-slate-50">
-            <span class="font-bold block uppercase mb-0.5">Catatan Produksi Khusus:</span>
-            <p>${order.notes}</p>
+          <div class="text-xs border-t border-slate-300 pt-2 space-y-1">
+            <p class="font-bold">RINCIAN UPAH BORONGAN WORKER:</p>
+            <div class="grid grid-cols-2 gap-x-4 gap-y-0.5 text-slate-700">
+              <p>• Upah Potong: Rp ${(order.upah_potong || 0).toLocaleString('id-ID')}</p>
+              <p>• Upah Jahit: Rp ${(order.upah_jahit || 0).toLocaleString('id-ID')}</p>
+              <p>• Upah Sablon: Rp ${(order.upah_sablon || 0).toLocaleString('id-ID')}</p>
+              <p>• Upah Packing: Rp ${(order.upah_packing || 0).toLocaleString('id-ID')}</p>
+            </div>
           </div>
-          ` : ''}
 
-          <!-- LAMPIRAN DESAIN -->
-          ${order.images && order.images.length > 0 ? `
-          <div class="mb-4">
-            <p class="text-xs font-bold mb-1 uppercase">Lampiran Desain Mockup:</p>
-            <div class="flex gap-2">
-              ${order.images.map(img => `<img src="${img}" class="h-32 object-contain border border-slate-300 rounded">`).join('')}
-            </div>
-          </div>
-          ` : ''}
-
-          <!-- PARAF DOKUMEN -->
-          <div class="mt-8 pt-4 border-t border-slate-300 grid grid-cols-4 gap-2 text-center text-[10px]">
-            <div>
-              <p class="font-bold mb-8">PEMOTONG</p>
-              <p>( .................... )</p>
-            </div>
-            <div>
-              <p class="font-bold mb-8">PENJAHIT</p>
-              <p>( .................... )</p>
-            </div>
-            <div>
-              <p class="font-bold mb-8">PENSABLON</p>
-              <p>( .................... )</p>
-            </div>
-            <div>
-              <p class="font-bold mb-8">PACKING / QC</p>
-              <p>( .................... )</p>
-            </div>
-          </div>
+          ${order.notes ? `<div class="mt-3 p-2 border border-dashed border-slate-400 text-xs"><strong>Catatan Produksi:</strong> ${order.notes}</div>` : ''}
         </div>
       `;
 
-      document.getElementById('lkpModal').classList.remove('hidden');
+      document.getElementById("lkpModal").classList.remove("hidden");
     }
 
     function closeLkpModal() {
-      document.getElementById('lkpModal').classList.add('hidden');
+      document.getElementById("lkpModal").classList.add("hidden");
     }
 
     function downloadLkpPDF() {
       if (!currentLkpOrder) return;
-      const element = document.getElementById('lkp-print-area');
+      const element = document.getElementById("lkp-print-area");
       const opt = {
-        margin:       0.5,
-        filename:     `LKP_${currentLkpOrder.queue_number || currentLkpOrder.id}.pdf`,
+        margin:       0.3,
+        filename:     `LKP_${currentLkpOrder.queue_number}_${currentLkpOrder.customer_name}.pdf`,
         image:        { type: 'jpeg', quality: 0.98 },
         html2canvas:  { scale: 2 },
         jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
